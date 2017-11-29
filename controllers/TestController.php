@@ -7,6 +7,7 @@ use yii\web\Controller;
 use yii\data\Pagination;
 use app\models\test\TestForm;
 use app\models\test\TestDB;
+use app\models\test\TestTableCountry;
 
 class TestController extends Controller {
     
@@ -39,6 +40,20 @@ class TestController extends Controller {
         }        
     }
     
+    public function actionSession() {
+        Yii::$app->session->set('login', 'User');
+        Yii::$app->session->set('password', '1234567890');
+        
+        if (Yii::$app->session->has('login') && Yii::$app->session->has('password')){
+            $this->debug(Yii::$app->session->get('login'));
+            $this->debug(Yii::$app->session->get('password'));
+        }else{
+            $this->debug('В сессии нет переменных login и password');
+        }
+        
+        return $this->render('session');
+    }
+
     public function actionDatabase() {
         $query = TestDB::find();
         
@@ -58,17 +73,8 @@ class TestController extends Controller {
         ]);
     }
     
-    public function actionSession() {
-        Yii::$app->session->set('login', 'User');
-        Yii::$app->session->set('password', '1234567890');
-        
-        if (Yii::$app->session->has('login') && Yii::$app->session->has('password')){
-            $this->debug(Yii::$app->session->get('login'));
-            $this->debug(Yii::$app->session->get('password'));
-        }else{
-            $this->debug('В сессии нет переменных login и password');
-        }
-        
-        return $this->render('session');
+    public function actionTables() {
+        $query = TestTableCountry::find()->with('city')->all();
+        return $this->render('tables', compact('query'));
     }
 }

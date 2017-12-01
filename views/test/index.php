@@ -9,4 +9,5 @@ use yii\helpers\Html;
 	<li>TEST SESSION: <?=Html::a('go session test', ['test/session']);?></li>
 	<li>TEST DATABASE (QUERY): <?=Html::a('go database query test', ['test/database']);?></li>
 	<li>TEST DATABASE (TABLES): <?=Html::a('go database tables test', ['test/tables']);?></li>
+        <li>TEST DATABASE (INSERT): <?=Html::a('go database insert test', ['test/insert']);?></li>
 </ul>

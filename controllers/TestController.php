@@ -8,6 +8,7 @@ use yii\data\Pagination;
 use app\models\test\TestForm;
 use app\models\test\TestDB;
 use app\models\test\TestTableCountry;
+use app\models\test\TestFormInsert;
 
 class TestController extends Controller {
     
@@ -76,5 +77,22 @@ class TestController extends Controller {
     public function actionTables() {
         $query = TestTableCountry::find()->with('city')->all();
         return $this->render('tables', compact('query'));
+    }
+    
+    public function actionInsert() {
+        $model = new TestFormInsert();
+        /*
+        $model->code = "ZZ";
+        $model->name = "Test ZZ";
+        $model->population = "1234567890";
+        $model->save();
+        return $this->render('form-insert', compact('model'));
+        */
+        if($model->load(Yii::$app->request->post()) && $model->save()){
+            return 'SAVE - OK!';
+        }else{
+            return $this->render('form-insert', compact('model'));
+        }
+
     }
 }

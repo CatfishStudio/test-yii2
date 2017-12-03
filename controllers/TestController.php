@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use yii\web\Controller;
+use yii\web\NotAcceptableHttpException;
 use yii\data\Pagination;
 use app\models\test\TestForm;
 use app\models\test\TestDB;
@@ -93,6 +94,34 @@ class TestController extends Controller {
         }else{
             return $this->render('form-insert', compact('model'));
         }
+    }
+    
+    public function actionUpdateDelete() {
+        $query = TestDB::findOne('ZZ');
+        //$this->debug($query);
+        if($query === null){
+            //throw new NotAcceptableHttpException();
+        }
+        
+        if(count($query) > 0){
+            $query->code = 'ZX';
+            $query->name = 'Test ZX';
+            $query->population = '0';
+            $query->save();
 
+            //$this->debug($query);
+            
+            $query->delete();
+            
+            //$this->debug($query);
+        }else{
+            $query = new TestDB();
+            $query->code = "ZZ";
+            $query->name = "Test ZZ";
+            $query->population = "1234567890";
+            $query->save();
+            return $this->refresh();
+        }
+        return 'Данные созданы, обновлены и удалены';
     }
 }

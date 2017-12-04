@@ -11,4 +11,5 @@ use yii\helpers\Html;
     <li>TEST DATABASE (TABLES): <?=Html::a('go database tables test', ['test/tables']);?></li>
     <li>TEST DATABASE (INSERT): <?=Html::a('go database insert test', ['test/insert']);?></li>
     <li>TEST DATABASE (UPDATE, DELETE): <?=Html::a('go database update & delete test', ['test/update-delete']);?></li>
+    <li>TEST WIDGET: <?=Html::a('go widget test', ['test/test-widget']);?></li>
 </ul>

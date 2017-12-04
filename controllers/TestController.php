@@ -124,4 +124,8 @@ class TestController extends Controller {
         }
         return 'Данные созданы, обновлены и удалены';
     }
+    
+    public function actionTestWidget() {
+        return $this->render('widgets');
+    }
 }

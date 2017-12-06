@@ -52,6 +52,7 @@ AppAsset::register($this);
                 . Html::endForm()
                 . '</li>'
             ),
+            ['label' => 'Gii', 'url' => ['/gii']],
             ['label' => 'Test', 'url' => ['/test/index']]
         ],
     ]);
